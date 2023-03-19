@@ -15,11 +15,11 @@ cd onpremise
 ### 此处报错：install/detect-platform.sh: line 15: docker: command not found FAIL: Unsupported docker architecture .
 > [docker官网下载地址：mac10.14.15 对应 docker4.10.0版本2022-06-30](https://docs.docker.com/desktop/release-notes/)
 ```sh
+# 解决：官网下载适配mac旧系统版本dmg包，安装
+
 docker --version
 
 # Docker version 20.10.17, build 100c701
-
-
 ```
 ### 继续初始化sentry
 ```sh
@@ -31,7 +31,9 @@ docker --version
 
 # 启动容器集群
   docker compose up -d
-
+```
+### 配置sentry项目
+```sh
 # 访问
 http://localhost:9000/organizations/sentry/issues/
 
@@ -44,13 +46,28 @@ Display Name： itvlog
 # 类型选择： Browser -> Vue 
   -> Give your project name
     hello-word
-  -> 点击 create project
+  -> 点击： create project
 
-# 创建vue项目
+
+
+
+# 桌面端启动
+  containers start
+```
+### 创建&配置vue2项目
+```sh
 vue create hello-word
+  选择：Default ([Vue 2] babel, eslint)
+cd hello-word
+
+# 配置vue快速开始手手册：http://localhost:9000/itvlog/javascript-vue/getting-started/javascript-vue/
+npm install --save @sentry/vue @sentry/tracing
+# 修改main.ts
+
 
 
 ```
+### 
 
 
 

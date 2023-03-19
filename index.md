@@ -58,16 +58,39 @@ Display Name： itvlog
 ```sh
 vue create hello-word
   选择：Default ([Vue 2] babel, eslint)
+  安装router: npm i vue-router -S
 cd hello-word
 
 # 配置vue快速开始手手册：http://localhost:9000/itvlog/javascript-vue/getting-started/javascript-vue/
 npm install --save @sentry/vue @sentry/tracing
 # 修改main.ts
+import * as Sentry from "@sentry/vue";
+import { BrowserTracing } from "@sentry/tracing";
+import * as Router from "vue-router";
 
-
-
+Vue.use(Router);
+const router = new Router({
+  // ...
+});
+Sentry.init({
+  Vue,
+  dsn: "http://7fa08e91caf64acfa26d739bd1fd3e31@localhost:9000/3",
+  integrations: [
+    new BrowserTracing({
+      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+      tracePropagationTargets: ["localhost", "my-site-url.com", /^\//],
+    }),
+  ],
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 ```
-### 
+### 启动vue2&调试
+```
+
+``` 
 
 
 

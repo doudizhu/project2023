@@ -57,8 +57,8 @@ Display Name： itvlog
 ### 创建&配置vue2项目
 ```sh
 vue create hello-word
-  选择：Default ([Vue 2] babel, eslint)
-  安装router: npm i vue-router -S
+  选择：vue2 自定义
+    + router
 cd hello-word
 
 # 配置vue快速开始手手册：http://localhost:9000/itvlog/javascript-vue/getting-started/javascript-vue/
@@ -66,15 +66,10 @@ npm install --save @sentry/vue @sentry/tracing
 # 修改main.ts
 import * as Sentry from "@sentry/vue";
 import { BrowserTracing } from "@sentry/tracing";
-import * as Router from "vue-router";
 
-Vue.use(Router);
-const router = new Router({
-  // ...
-});
 Sentry.init({
   Vue,
-  dsn: "http://7fa08e91caf64acfa26d739bd1fd3e31@localhost:9000/3",
+  dsn: "http://e489a0252e084003b85959dc802e6345@localhost:9000/2",
   integrations: [
     new BrowserTracing({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router),
@@ -85,14 +80,28 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+  // 自定义
+  logErrors: true,
+  release: 'pro@1.0.0' // 配置上报版本
 });
 ```
-### 启动vue2&调试
+### 本地开发vue2&调试：模拟一个vue错误
+#### src/components/HelloWorld.vue
+```
+<button @click="hello">click hello</button>
+
+methods: {
+    hello() {
+      console.log(window.a.b)
+    }
+  }
+``` 
+#### 调试：点击触发报错（本地net），查看issue报告（sentry）
+
+### 线上生产vue2&调试：模拟一个vue错误
 ```
 
-``` 
-
-
+```
 
 <!-- > [MAC系统安装docker报错 --- 解决sudo docker报错command not found](https://blog.csdn.net/MYNAH_Li/article/details/112760415)
 ```

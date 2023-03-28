@@ -1,5 +1,5 @@
 [toc]
-* sentry搭建&配置&调试：mac
+* 监控系统：sentry搭建&配置&调试：mac
 # sentry：下载、安装、配置、授权
 ## 下载
 ```sh

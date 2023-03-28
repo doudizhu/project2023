@@ -18,6 +18,9 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+  // 自定义
+  logErrors: true,
+  release: 'pro@1.0.1' // 配置上报版本
 });
 
 Vue.config.productionTip = false

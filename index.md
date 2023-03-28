@@ -1,6 +1,6 @@
 [toc]
 
-> 20230316
+> 20230319
 * [飞书:前端工程化、监控系统(Mini-Sentry)、埋点系统(声明式链路埋点库)](https://vt7y72vnyl.feishu.cn/wiki/wikcnVEOAR4mUUTwI3VFvI2IdSb)
 # 监控系统
 ## 视频教程
@@ -99,30 +99,44 @@ methods: {
 #### 调试：点击触发报错（本地net），查看issue报告（sentry）
 
 ### 线上生产vue2&调试：模拟一个vue错误
+#### 生成token
 ```
+点击左侧边栏头像
+  -》API keys -> Auth Token
+  -》Create New Token
+    勾选权限：project:write
+  生成复制token
+
 
 ```
+#### .sentryclirc
+```
+[defaults]
+url=http://localhost:9000/
+org=itvlog
+project=hello-world
 
-<!-- > [MAC系统安装docker报错 --- 解决sudo docker报错command not found](https://blog.csdn.net/MYNAH_Li/article/details/112760415)
+[auth]
+token=36c32fd852d045ada5a68bbd9b0db671083cf9ed90ae42d38aa968c05984137c
 ```
-brew cask install docker
+#### 修改上报版本：src/main.js
 ```
-### 此处报错：Running Homebrew as root is extremely dangerous and no longer supported. As Homebrew does not drop privileges on installation you would be giving all build scripts full access to your system.
-> [完美解决Error: Running Homebrew as root is extremely dangerous and no longer supported.](https://blog.csdn.net/meifannao789456/article/details/105083605)
+release: 'pro@1.0.1' // 配置上报版本
 ```
-$ sudo chown -R `whoami` /usr/local/Homebrew/
-$ sudo chown -R $(whoami) $(brew --prefix)/*
-$ sudo mkdir /usr/local/Frameworks
-$ sudo chown -R `whoami` /usr/local/Frameworks/
+#### 模拟线上http服务，使用anywhere工具包
 ```
-### 此处报错：Running Homebrew as root is extremely dangerous and no longer supported. As Homebrew does not drop privileges on installation you would be giving all build scripts full access to your system.
-> [brew 安装报错 Running Homebrew as root is extremely dangerous and no longer supported.](https://www.jianshu.com/p/147ea2c5f9e1)
-```
-mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+npm i anywhere -g
 
-brew install docker --cask
-``` -->
-
+npm run build
+cd dist
+anywhere -p 8888
+```
+#### 配置仅开发环境,监控：main.js
+```
+process.env.NODE_ENV === 'production' && Sentry.init({
+  ...
+})
+```
 
 
 * [前端监控系统实战](https://www.bilibili.com/video/BV11L4y1L7BY?p=1&vd_source=c4fe7507ea85461391fe91772b3fbe6f)

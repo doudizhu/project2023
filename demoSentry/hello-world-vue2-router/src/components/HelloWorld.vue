@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <button @click="hello">click hello</button>
-    <h1>{{ msg }}</h1>
+    <h1 @click="helloText">{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -40,7 +40,11 @@ export default {
   },
   methods: {
     hello() {
+      console.log('text')
       console.log(window.a.b)
+    },
+    helloText() {
+      console.log('text')
     }
   }
 }

@@ -1,0 +1,7 @@
+[defaults]
+url=http://localhost:9000/
+org=itvlog
+project=hello-world
+
+[auth]
+token=36c32fd852d045ada5a68bbd9b0db671083cf9ed90ae42d38aa968c05984137c

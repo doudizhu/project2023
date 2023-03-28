@@ -1,5 +1,5 @@
 [toc]
-* 监控系统：sentry搭建&配置&调试：mac
+* 前端监控系统：mac环境下sentry搭建、配置、调试
 # sentry：下载、安装、配置、授权
 ## 下载
 ```sh
@@ -47,7 +47,7 @@ cd onpremise
   生成复制token
 ```
 # 项目：搭建、配置、调试
-## 搭建：vue2
+## 搭建：vue2项目
 ```
 vue create hello-word
   选择自定义（2.0+router+babel）：Manually select features
@@ -59,7 +59,7 @@ cd hello-word
 ```
 ## 配置
 > [配置vue快速开始手手册](http://localhost:9000/itvlog/javascript-vue/getting-started/javascript-vue/)
-### 安装
+### 安装sentry
 ```
 npm install --save @sentry/vue @sentry/tracing
 ```
@@ -142,5 +142,7 @@ docker --version
 ./install.sh
 ```
 
-# 参考教程
+# ps:
+* [项目地址github](https://github.com/doudizhu/project2023)
+# 参考
 * [Vue+Docker+Sentry 极速搭建前端异常监控系统](https://www.bilibili.com/video/BV1UZ4y1p7MF/?spm_id_from=333.999.0.0&vd_source=c4fe7507ea85461391fe91772b3fbe6f)
